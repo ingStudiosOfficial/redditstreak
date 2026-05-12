@@ -140,15 +140,26 @@ async function upvotePost(page: Page) {
 }
 
 async function main() {
-    const browser = await puppeteer.default.launch({
-        headless: false,
-        args: [
-            '--no-sandbox',
-            '--disable-setuid-sandbox',
-            '--disable-dev-shm-usage',
-            '--window-size=1920,1080',
-        ],
-    });
+    const browser = process.env.CUSTOM_CHROMIUM_PATH
+        ? await puppeteer.default.launch({
+              headless: false,
+              args: [
+                  '--no-sandbox',
+                  '--disable-setuid-sandbox',
+                  '--disable-dev-shm-usage',
+                  '--window-size=1920,1080',
+              ],
+              executablePath: process.env.CUSTOM_CHROMIUM_PATH,
+          })
+        : await puppeteer.default.launch({
+              headless: false,
+              args: [
+                  '--no-sandbox',
+                  '--disable-setuid-sandbox',
+                  '--disable-dev-shm-usage',
+                  '--window-size=1920,1080',
+              ],
+          });
     puppeteerBrowser = browser;
 
     const page = await browser.newPage();
