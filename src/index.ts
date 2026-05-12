@@ -130,13 +130,6 @@ async function upvotePost(page: Page) {
         await page.goBack({
             waitUntil: 'networkidle2',
         });
-
-        const nextUpvote = generateRandom(43200000, 50400000);
-        await delay(nextUpvote);
-
-        await page.reload({
-            waitUntil: 'networkidle2',
-        });
     } catch (error) {
         console.error(error);
         await page.goto('https://reddit.com', {
