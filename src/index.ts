@@ -149,7 +149,12 @@ async function upvotePost(page: Page) {
 async function main() {
     const browser = await puppeteer.default.launch({
         headless: false,
-        args: ['--start-fullscreen'],
+        args: [
+            '--start-fullscreen',
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+        ],
     });
     puppeteerBrowser = browser;
 
