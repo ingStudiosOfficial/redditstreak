@@ -143,10 +143,10 @@ async function main() {
     const browser = await puppeteer.default.launch({
         headless: false,
         args: [
-            '--start-fullscreen',
             '--no-sandbox',
             '--disable-setuid-sandbox',
             '--disable-dev-shm-usage',
+            '--window-size=1920,1080',
         ],
     });
     puppeteerBrowser = browser;
